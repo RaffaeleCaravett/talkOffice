@@ -7,7 +7,7 @@
         </button>
       </div>
         <div class="col-md-4">
-      <button [routerLink]="'/office'" class="text-warning">
+      <button [routerLink]="'/office'" class="text-warning" *ngIf="loggedIn">
          Office
         </button>
       </div>
