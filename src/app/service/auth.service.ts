@@ -28,10 +28,10 @@ signUp(user:{}){
 logIn(body:{}){
   return this.http.post(environment.API_URL+this.auth+this.login,body)
 }
-verifyEsecizioToken(token:string){
+verifyToken(token:string){
   return this.http.get(environment.API_URL+this.auth+token)
 }
-verifyEsecizioRefreshToken(refreshToken:string){
+verifyRefreshToken(refreshToken:string){
   return this.http.get(environment.API_URL+this.auth+'/refreshToken/'+refreshToken)
 }
 }

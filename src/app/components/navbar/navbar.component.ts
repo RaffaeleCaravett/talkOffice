@@ -18,6 +18,8 @@ constructor(private authService:AuthService){
 }
 
 logout(){
-
+localStorage.clear()
+this.authService.token=''
+this.authService.authenticateUser(false)
 }
 }
