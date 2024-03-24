@@ -11,6 +11,8 @@ import { OfficeComponent } from './components/office/office.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './core/auth.guard';
+import { TokenInterceptor } from './core/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,13 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
   providers: [
     provideAnimations(),
     provideToastr(),
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+
   ],
   bootstrap: [AppComponent]
 })

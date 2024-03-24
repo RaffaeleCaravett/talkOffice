@@ -22,19 +22,8 @@ authenticateUser(bool:boolean){
 this.authGuard.authenticateUser(bool)
 this.isAuthenticated.next(bool);
 }
-signUp(esercizio:{},file:any){
-  const formData: FormData = new FormData();
-
-
-  const json = JSON.stringify(esercizio);
-  const blob = new Blob([json], {
-    type: 'application/json'
-  });
-  formData.append('esercizioDTO', blob);
-      formData.append('file', file, file.name);
-
-
-  return this.http.post(environment.API_URL + this.auth+this.register, formData);
+signUp(user:{}){
+  return this.http.post(environment.API_URL + this.auth+this.register, user);
 }
 logIn(body:{}){
   return this.http.post(environment.API_URL+this.auth+this.login,body)
