@@ -20,7 +20,11 @@ constructor(private authGuard:AuthGuard,private http:HttpClient){}
 
 authenticateUser(bool:boolean){
 this.authGuard.authenticateUser(bool)
-this.isAuthenticated.next(bool);
+if(bool){
+  this.isAuthenticated.next(true);
+}else{
+  this.isAuthenticated.next(false);
+}
 }
 signUp(user:{}){
   return this.http.post(environment.API_URL + this.auth+this.register, user);
@@ -29,7 +33,7 @@ logIn(body:{}){
   return this.http.post(environment.API_URL+this.auth+this.login,body)
 }
 verifyToken(token:string){
-  return this.http.get(environment.API_URL+this.auth+token)
+  return this.http.get(environment.API_URL+this.auth+'/'+token)
 }
 verifyRefreshToken(refreshToken:string){
   return this.http.get(environment.API_URL+this.auth+'/refreshToken/'+refreshToken)
