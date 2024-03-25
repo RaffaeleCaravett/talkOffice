@@ -23,6 +23,19 @@ constructor(private officeService:OfficeService,private toastr:ToastrService){}
 
 ngAfterViewInit() {
   this.dataSource.paginator = this.paginator;
+  this.officeService.getAllRichieste().subscribe({
+  next:(categories:any)=>{
+    this.dataSource= new MatTableDataSource<any>(categories.content)
+    this.elements=categories.content
+    setTimeout(()=>{
+ if(this.dataSource.paginator){
+ this.dataSource.paginator!.pageIndex=categories.pageable.pageNumber-1
+    this.dataSource.paginator!.pageSize=categories.pageable.pageSize
+this.dataSource.paginator!.length=categories.totalElements
+    }
+    },3000)
+  }
+})
 }
   ngOnInit(): void {
 if(localStorage.getItem('user')){
@@ -37,6 +50,7 @@ this.officeService.getAllCategories().subscribe({
   },
   complete:()=>{}
 })
+
   }
 
 }

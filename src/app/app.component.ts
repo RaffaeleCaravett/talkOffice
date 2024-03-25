@@ -17,7 +17,8 @@ constructor(private authService:AuthService,private router:Router){}
 this.authService.verifyToken(localStorage.getItem('accessToken')!).subscribe({
   next:(success:any)=>{
   localStorage.setItem('user',JSON.stringify(success))
-    this.authService.authenticateUser(true)
+  this.authService.token=localStorage.getItem('accessToken')!
+  this.authService.authenticateUser(true)
     this.router.navigate(['/office'])
   },
   error:(err:any)=>{
@@ -36,6 +37,10 @@ this.authService.verifyToken(localStorage.getItem('accessToken')!).subscribe({
           })
         }
       })
+    }else{
+      this.authService.authenticateUser(false)
+      this.authService.token=''
+      this.router.navigate(['/'])
     }
   }
 })
