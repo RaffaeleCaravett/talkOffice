@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OfficeRoutingModule } from './office-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -8,7 +9,8 @@ import { OfficeRoutingModule } from './office-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    OfficeRoutingModule
+    OfficeRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class OfficeModule { }
