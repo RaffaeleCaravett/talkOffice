@@ -22,7 +22,7 @@ this.authService.verifyToken(localStorage.getItem('accessToken')!).subscribe({
   },
   error:(err:any)=>{
     if(localStorage.getItem('refreshToken')){
-      this.authService.verifyRefreshToken(localStorage.getItem('refreshtoken')!).subscribe({
+      this.authService.verifyRefreshToken(localStorage.getItem('refreshToken')!).subscribe({
         next:(success:any)=>{
           localStorage.setItem('accessToken',success.tokens.accessToken)
           localStorage.setItem('refreshToken',success.tokens.refreshToken)

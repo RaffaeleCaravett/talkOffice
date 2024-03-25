@@ -20,7 +20,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    OfficeComponent,
     NavbarComponent,
     FooterComponent
   ],
