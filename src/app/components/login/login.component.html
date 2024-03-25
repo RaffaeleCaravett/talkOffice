@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="container text-center py-5">
+  <div class="row py-5">
+    <div class="col-md-6 p-2 py-5">
+<h1>Login</h1>
+<form [formGroup]="loginForm">
+<label for="">Email</label>
+<input type="text" class="form-control w-75 m-auto" formControlName="email">
+<p class="text-danger" *ngIf="loginForm.controls['email'].invalid&&submitted">Campo non valido</p>
+<label for="">Password</label>
+<input type="password" class="form-control w-75 m-auto" formControlName="password">
+<p class="text-danger" *ngIf="loginForm.controls['password'].invalid&&submitted">Campo non valido</p>
+<button class="btn fs-5 btn-light my-2 border" (click)="login()">Login</button>
+</form>
+    </div>
+<div class="col-md-6 p-2 py-5">
+<h1>Signup</h1>
+<form [formGroup]="signupForm">
+  <label for="">Nome</label>
+  <input type="text" class="form-control w-75 m-auto" formControlName="nome">
+  <p class="text-danger" *ngIf="signupForm.controls['nome'].invalid&&submitted">Campo non valido</p>
+  <label for="">Cognome</label>
+  <input type="text" class="form-control w-75 m-auto" formControlName="cognome">
+  <p class="text-danger" *ngIf="signupForm.controls['cognome'].invalid&&submitted">Campo non valido</p>
+  <label for="">Email</label>
+<input type="text" class="form-control w-75 m-auto" formControlName="email">
+<p class="text-danger" *ngIf="signupForm.controls['email'].invalid&&submitted">Campo non valido</p>
+<label for="">Password</label>
+<input type="password" class="form-control w-75 m-auto" formControlName="password">
+<p class="text-danger" *ngIf="signupForm.controls['password'].invalid&&submitted">Campo non valido</p>
+<label for="">Ripeti Password</label>
+<input type="password" class="form-control w-75 m-auto" formControlName="ripetiPassword">
+<p class="text-danger" *ngIf="signupForm.controls['ripetiPassword'].invalid&&submitted">Campo non valido</p>
+<p class="text-danger" *ngIf="signupForm.controls['ripetiPassword'].value!=signupForm.controls['password'].value&&submitted">Le password non coincidono</p>
+<button class="btn fs-5 btn-light my-2 border" (click)="signup()">Signup</button>
+</form>
+</div>
+<div class="col-md-12 py-1">
+  <hr class="py-2">
+  <h1>Let's make something extraordinary</h1>
+</div>
+  </div>
+</div>

@@ -28,7 +28,8 @@ this.signupForm=new FormGroup({
   email: new FormControl('',Validators.required),
   password:new FormControl('',Validators.required),
   nome: new FormControl('',Validators.required),
-  cognome:new FormControl('',Validators.required)
+  cognome:new FormControl('',Validators.required),
+  ripetiPassword:new FormControl('',Validators.required)
   })
   }
 
@@ -62,7 +63,8 @@ this.authService.verifyToken(this.authService.token).subscribe((data:any)=>{
 
   signup(){
     this.submitted=true
-    if(this.signupForm.valid){
+    if(this.signupForm.valid&&
+      this.signupForm.controls['password'].value!=this.signupForm.controls['ripetiPassword'].value){
 this.authService.signUp(
   {
     nome:this.signupForm.controls['nome'].value,
@@ -73,6 +75,7 @@ password:this.signupForm.controls['password'].value
   next:(success:any)=>{
 this.section='signup'
 this.signupForm.reset()
+this.toastr.show("User salvato")
   },
   error:(err:any)=>{
     this.toastr.show(err.error.message||"C'è stato un problema nell'elaborazione della richiesta")
