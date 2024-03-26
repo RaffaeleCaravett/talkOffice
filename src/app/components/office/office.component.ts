@@ -50,7 +50,8 @@ this.officeService.getAllCategories().subscribe({
   },
   complete:()=>{}
 })
-
   }
+
+changePage(evento:any){}
 
 }

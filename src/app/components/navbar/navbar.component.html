@@ -2,22 +2,22 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-      <button [routerLink]="'/'" class="text-warning">
+      <button [routerLink]="'/'" class="text-warning p-2">
          Home
         </button>
       </div>
         <div class="col-md-4">
-      <button [routerLink]="'/office'" class="text-warning" *ngIf="loggedIn">
+      <button [routerLink]="'/office'" class="text-warning p-2" *ngIf="loggedIn">
          Office
         </button>
       </div>
         <div class="col-md-4" *ngIf="!loggedIn">
-      <button [routerLink]="'/login'" class="text-warning">
+      <button [routerLink]="'/login'" class="text-warning p-2">
         Login/Signup
       </button>
       </div>
         <div class="col-md-4" *ngIf="loggedIn">
-      <button (click)="logout()" class="text-warning">
+      <button (click)="logout()" class="text-warning p-2">
         Logout
       </button>
       </div>
