@@ -12,6 +12,7 @@ export class OfficeService{
 private auth:string='/auth'
 private categorie:string='/categorie'
 private richiesteTalk:string='/richiesteTalk'
+private talk:string='/talk'
 
 constructor(private http:HttpClient){}
 
@@ -29,5 +30,9 @@ leggi(richiestaId:number){
 }
 getByCategoria(categoria:string){
 return this.http.get(environment.API_URL+this.richiesteTalk+`/categoria?categoria=${categoria||'Fitness'}`)
+}
+
+saveTalk(talk:{}){
+  return this.http.post(environment.API_URL+this.talk,talk)
 }
 }

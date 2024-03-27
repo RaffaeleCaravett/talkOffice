@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
@@ -19,6 +20,18 @@ displayedColumns: string[] = ['nome', 'cognome', 'email', 'linkProfilo','profess
 
 elements: any[] = [];
 dataSource = new MatTableDataSource<any>(this.elements);
+talkForm!:FormGroup
+immagine1!:FormGroup
+immagine2!:FormGroup
+immagine3!:FormGroup
+positions:any[]=['First','Second','Third']
+fileImage:any
+selectedImage:any
+fileImage1:any
+selectedImage1:any
+fileImage2:any
+selectedImage2:any
+submittedTalk:boolean=false
 constructor(private officeService:OfficeService,private toastr:ToastrService){}
 
 ngAfterViewInit() {
@@ -50,8 +63,90 @@ this.officeService.getAllCategories().subscribe({
   },
   complete:()=>{}
 })
+
+this.talkForm = new FormGroup({
+testo:new FormControl('',Validators.required),
+categoria: new FormControl('',Validators.required),
+titolo:new FormControl('',Validators.required)
+})
+this.immagine1= new FormGroup({
+  immagine:new FormControl('',Validators.required),
+  position:new FormControl('',Validators.required)
+})
+this.immagine2= new FormGroup({
+  immagine:new FormControl('',Validators.required),
+  position:new FormControl('',Validators.required)
+})
+this.immagine3= new FormGroup({
+  immagine:new FormControl('',Validators.required),
+  position:new FormControl('',Validators.required)
+})
   }
 
 changePage(evento:any){}
 
+
+
+readURL1(event: any): void {
+  if (event.target.files && event.target.files[0]) {
+    if (event.target.files[0] && event.target.files[0].size > 1048576) {
+     this.toastr.show("Dimensioni del file troppo grandi, massimo 1 MB")
+  }else{
+     this.fileImage = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = e => this.selectedImage = reader.result;
+      reader.readAsDataURL(this.fileImage);
+  }
+
+  }
+}
+readURL2(event: any): void {
+  if (event.target.files && event.target.files[0]) {
+    if (event.target.files[0] && event.target.files[0].size > 1048576) {
+     this.toastr.show("Dimensioni del file troppo grandi, massimo 1 MB")
+  }else{
+     this.fileImage1 = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = e => this.selectedImage1 = reader.result;
+      reader.readAsDataURL(this.fileImage1);
+  }
+
+  }
+}
+readURL3(event: any): void {
+  if (event.target.files && event.target.files[0]) {
+    if (event.target.files[0] && event.target.files[0].size > 1048576) {
+     this.toastr.show("Dimensioni del file troppo grandi, massimo 1 MB")
+  }else{
+     this.fileImage2 = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = e => this.selectedImage2 = reader.result;
+      reader.readAsDataURL(this.fileImage2);
+  }
+
+  }
+}
+
+inserisciTalk(){
+  this.submittedTalk=true
+if(this.talkForm.valid){
+  this.officeService.saveTalk(
+    {
+      titolo:this.talkForm.controls['titolo'].value,
+      categoria:this.talkForm.controls['categoria'].value,
+      testo:this.talkForm.controls['testo'].value
+    }
+  ).subscribe({
+    next:(talk:any)=>{
+
+    },
+    error:(err:any)=>{
+      this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio del talk.")
+    },
+    complete:()=>{}
+  })
+}else{
+  this.toastr.show("Completa il form prima.")
+}
+}
 }

@@ -25,8 +25,8 @@ this.authService.verifyToken(localStorage.getItem('accessToken')!).subscribe({
     if(localStorage.getItem('refreshToken')){
       this.authService.verifyRefreshToken(localStorage.getItem('refreshToken')!).subscribe({
         next:(success:any)=>{
-          localStorage.setItem('accessToken',success.tokens.accessToken)
-          localStorage.setItem('refreshToken',success.tokens.refreshToken)
+          localStorage.setItem('accessToken',success.accessToken)
+          localStorage.setItem('refreshToken',success.refreshToken)
           this.authService.token=localStorage.getItem('accessToken')!
           this.authService.verifyToken(this.authService.token).subscribe({
             next:(succes:any)=>{
