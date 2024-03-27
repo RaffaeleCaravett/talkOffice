@@ -85,9 +85,23 @@
   <option value="{{c}}" *ngFor="let c of categories">{{c}}</option>
 </select>
 <p class="text-danger" *ngIf="submittedTalk&&talkForm.controls['categoria'].invalid">Categoria invalida.</p>
-     <label for="" class="p-2">Testo</label>
-<textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="testo"></textarea>
-<p class="text-danger" *ngIf="submittedTalk&&talkForm.controls['testo'].invalid">Testo invalido.</p>
+<div class="row">
+  <div class="col-md-4 p-2">
+    <label for="" class="p-2">Prima sezione del testo </label>
+    <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="testo1"></textarea>
+    <p class="text-danger" *ngIf="submittedTalk&&talkForm.controls['testo1'].invalid">Testo invalido.</p>
+  </div>
+  <div class="col-md-4 p-2">
+    <label for="" class="p-2">Seconda sezione del testo </label>
+    <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="testo2"></textarea>
+    <p class="text-danger" *ngIf="submittedTalk&&talkForm.controls['testo2'].invalid">Testo invalido.</p>
+  </div>
+  <div class="col-md-4 p-2">
+    <label for="" class="p-2">Terza sezione del testo </label>
+    <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="testo3"></textarea>
+    <p class="text-danger" *ngIf="submittedTalk&&talkForm.controls['testo3'].invalid">Testo invalido.</p>
+  </div>
+</div>
    </form>
     </div>
     <div class="col-md-4">
@@ -104,7 +118,7 @@
           <option value="{{p}}" *ngFor="let p of positions">{{p}}</option>
         </select>
       <button class="btn fs-5" (click)="img1.click()">➕</button>
-      <button class="btn fs-5 my-1" *ngIf="selectedImage" (click)="selectedImage=null;fileImage=null">❌</button>
+      <button class="btn fs-5 my-1" *ngIf="selectedImage" (click)="selectedImage=null;fileImage=null;immagine1.controls['immagine'].setValue(null)">❌</button>
       </form>
     </div>
     <div class="col-md-4">
@@ -121,7 +135,7 @@
           <option value="{{p}}" *ngFor="let p of positions">{{p}}</option>
         </select>
       <button class="btn fs-5" (click)="img2.click()">➕</button>
-      <button class="btn fs-5 my-1" *ngIf="selectedImage1" (click)="selectedImage1=null;fileImage1=null">❌</button>
+      <button class="btn fs-5 my-1" *ngIf="selectedImage1" (click)="selectedImage1=null;fileImage1=null;immagine2.controls['immagine'].setValue(null)">❌</button>
       </form>
     </div>
     <div class="col-md-4">
@@ -138,7 +152,7 @@
           <option value="{{p}}" *ngFor="let p of positions">{{p}}</option>
         </select>
       <button class="btn fs-5" (click)="img3.click()">➕</button>
-      <button class="btn fs-5 my-1" *ngIf="selectedImage2" (click)="selectedImage2=null;fileImage2=null">❌</button>
+      <button class="btn fs-5 my-1" *ngIf="selectedImage2" (click)="selectedImage2=null;fileImage2=null;immagine3.controls['immagine'].setValue(null)">❌</button>
       </form>
     </div>
     <div class="col-md-12 py-3">

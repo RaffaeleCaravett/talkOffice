@@ -65,7 +65,9 @@ this.officeService.getAllCategories().subscribe({
 })
 
 this.talkForm = new FormGroup({
-testo:new FormControl('',Validators.required),
+testo1:new FormControl('',Validators.required),
+testo2:new FormControl('',Validators.required),
+testo3:new FormControl('',Validators.required),
 categoria: new FormControl('',Validators.required),
 titolo:new FormControl('',Validators.required)
 })
@@ -134,7 +136,10 @@ if(this.talkForm.valid){
     {
       titolo:this.talkForm.controls['titolo'].value,
       categoria:this.talkForm.controls['categoria'].value,
-      testo:this.talkForm.controls['testo'].value
+      testo1:this.talkForm.controls['testo1'].value,
+      testo2:this.talkForm.controls['testo2'].value,
+      testo3:this.talkForm.controls['testo3'].value,
+      user_id:this.user.id
     }
   ).subscribe({
     next:(talk:any)=>{
@@ -183,6 +188,10 @@ this.toastr.success("La terza immagine è stata caricata")
       this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della terza immagine.")
     }
   })
+
+  setTimeout(()=>{
+this.toastr.show("Talk salvato.")
+  },4000)
 }
     },
     error:(err:any)=>{
