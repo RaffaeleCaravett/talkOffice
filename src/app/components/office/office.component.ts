@@ -148,7 +148,7 @@ if(this.talkForm.valid){
         this.officeService.saveImage(
           {
             talk_id:talk.id,
-            position:this.immagine1.controls['position'].value
+            posizione:this.immagine1.controls['position'].value
           },this.fileImage
         ).subscribe({
           next:(next:any)=>{
@@ -163,7 +163,7 @@ if(this.fileImage1&&this.immagine2.valid){
   this.officeService.saveImage(
     {
       talk_id:talk.id,
-      position:this.immagine2.controls['position'].value
+      posizione:this.immagine2.controls['position'].value
     },this.fileImage1
   ).subscribe({
     next:(next:any)=>{
@@ -178,7 +178,7 @@ if(this.fileImage2&&this.immagine3.valid){
   this.officeService.saveImage(
     {
       talk_id:talk.id,
-      position:this.immagine3.controls['position'].value
+      posizione:this.immagine3.controls['position'].value
     },this.fileImage2
   ).subscribe({
     next:(next:any)=>{
