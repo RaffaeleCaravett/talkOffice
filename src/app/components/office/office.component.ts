@@ -138,7 +138,52 @@ if(this.talkForm.valid){
     }
   ).subscribe({
     next:(talk:any)=>{
+      if(this.fileImage&&this.immagine1.valid){
 
+        this.officeService.saveImage(
+          {
+            talk_id:talk.id,
+            position:this.immagine1.controls['position'].value
+          },this.fileImage
+        ).subscribe({
+          next:(next:any)=>{
+          this.toastr.success("La prima immagine è stata caricata")
+          },error:(err:any)=>{
+            this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della prima immagine.")
+          }
+        })
+}
+if(this.fileImage1&&this.immagine2.valid){
+
+  this.officeService.saveImage(
+    {
+      talk_id:talk.id,
+      position:this.immagine2.controls['position'].value
+    },this.fileImage1
+  ).subscribe({
+    next:(next:any)=>{
+    this.toastr.success("La seconda immagine è stata caricata")
+    },error:(err:any)=>{
+      this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della seconda immagine.")
+    }
+  })
+}
+if(this.fileImage2&&this.immagine3.valid){
+
+  this.officeService.saveImage(
+    {
+      talk_id:talk.id,
+      position:this.immagine3.controls['position'].value
+    },this.fileImage2
+  ).subscribe({
+    next:(next:any)=>{
+this.toastr.success("La terza immagine è stata caricata")
+
+    },error:(err:any)=>{
+      this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della terza immagine.")
+    }
+  })
+}
     },
     error:(err:any)=>{
       this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio del talk.")

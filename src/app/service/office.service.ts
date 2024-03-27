@@ -13,6 +13,7 @@ private auth:string='/auth'
 private categorie:string='/categorie'
 private richiesteTalk:string='/richiesteTalk'
 private talk:string='/talk'
+private immagini:string='/immagini'
 
 constructor(private http:HttpClient){}
 
@@ -35,4 +36,17 @@ return this.http.get(environment.API_URL+this.richiesteTalk+`/categoria?categori
 saveTalk(talk:{}){
   return this.http.post(environment.API_URL+this.talk,talk)
 }
+saveImage(immagine:{},file:any){
+  const formData: FormData = new FormData();
+
+
+  const json = JSON.stringify(immagine);
+  const blob = new Blob([json], {
+    type: 'application/json'
+  });
+  formData.append('immagineDTO', blob);
+      formData.append('file', file, file.name);
+
+  return this.http.post(environment.API_URL + this.immagini, formData);
+ }
 }
