@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './core/auth.guard';
 import { TokenInterceptor } from './core/token.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
+import { VisualizzaTalkComponent } from './visualizza-talk/visualizza-talk.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     LoginComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    VisualizzaTalkComponent
   ],
   imports: [
     BrowserModule,
