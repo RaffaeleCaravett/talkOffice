@@ -158,5 +158,24 @@
     <div class="col-md-12 py-3">
       <button class="btn btn-light border my-2" (click)="inserisciTalk()">Inserisci talk</button>
     </div>
+<div class="col-md-12 py-5" *ngIf="talks">
+  <h2>Published talks</h2>
+  <div class="p-2 row" *ngFor="let t of talks.content">
+  <div class="col-md-12 bg-light border rounded text-start">
+    <h2>{{t.id + " " +t.titolo + " - " + t.categoria}}</h2>
+  </div>
+  </div>
+  <div class="p-3 d-flex justify-content-center">
+  <p class="px-2" style="cursor: pointer;" (click)="changePage(0)" *ngIf="talks.number!=0">First page</p>
+    <p class="px-2" style="cursor: pointer;" (click)="changePage(talks.number-1)" *ngIf="talks.number!=0">⬅️</p>
+    <p>
+      {{talks.number+1 + " of " + talks.totalPages}}</p>
+        <p class="px-2" style="cursor: pointer;" (click)="changePage(talks.number+1)" *ngIf="talks.number+1!=talks.totalPages">➡️</p>
+    <p class="px-2" style="cursor: pointer;" (click)="changePage(talks.totalPages-1)" *ngIf="talks.number+1!=talks.totalPages">Last page</p>
+  </div>
+</div>
+<div class="col-md-12 py-5 text-danfger" *ngIf="!talks">
+  <p class="fs-5">Non ci sono talks ancora</p>
+</div>
   </div>
 </div>

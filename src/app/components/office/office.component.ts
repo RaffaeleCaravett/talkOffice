@@ -32,6 +32,7 @@ selectedImage1:any
 fileImage2:any
 selectedImage2:any
 submittedTalk:boolean=false
+talks:any
 constructor(private officeService:OfficeService,private toastr:ToastrService){}
 
 ngAfterViewInit() {
@@ -84,12 +85,16 @@ this.immagine3= new FormGroup({
   position:new FormControl('',Validators.required)
 })
 this.officeService.getTalk().subscribe((data:any)=>{
-  console.log(data)
+ this.talks=data
 })
 
   }
 
-changePage(evento:any){}
+changePage(evento:any){
+ this.officeService.getTalk(evento).subscribe((talk:any)=>{
+  this.talks=talk
+ })
+}
 
 
 
