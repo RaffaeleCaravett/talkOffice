@@ -83,6 +83,10 @@ this.immagine3= new FormGroup({
   immagine:new FormControl('',Validators.required),
   position:new FormControl('',Validators.required)
 })
+this.officeService.getTalk().subscribe((data:any)=>{
+  console.log(data)
+})
+
   }
 
 changePage(evento:any){}
@@ -174,7 +178,6 @@ if(this.fileImage1&&this.immagine2.valid){
   })
 }
 if(this.fileImage2&&this.immagine3.valid){
-
   this.officeService.saveImage(
     {
       talk_id:talk.id,

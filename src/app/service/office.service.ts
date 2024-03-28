@@ -49,4 +49,7 @@ saveImage(immagine:{},file:any){
 
   return this.http.post(environment.API_URL + this.immagini, formData);
  }
+ getTalk(){
+  return this.http.get(environment.API_URL + this.talk);
+ }
 }
