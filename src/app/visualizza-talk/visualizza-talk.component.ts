@@ -182,7 +182,18 @@ this.officeService.deleteImage(this.talk.immagini[index].id).subscribe((boolean:
 modificaImmagine(index:number){
 if(index==0&&this.immagine1.valid){
 if(this.firsSelectedImage){
-console.log('modify')
+this.officeService.putImage(
+  this.talk.immagini[index].id,
+  this.talk.id,
+  {
+    talk_id:this.talk.id,
+    posizione:this.immagine1.controls['position'].value
+  },
+  this.fileImage
+).subscribe((image:any)=>{
+  this.toastr.success("Immagine caricata")
+  this.firsSelectedImage=image.link
+})
 }else{
  this.officeService.saveImage(
     {
@@ -192,7 +203,7 @@ console.log('modify')
   ).subscribe({
     next:(next:any)=>{
 this.toastr.success("La prima immagine è stata caricata")
-
+this.firsSelectedImage=next.link
     },error:(err:any)=>{
       this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della prima immagine.")
     }
@@ -200,7 +211,18 @@ this.toastr.success("La prima immagine è stata caricata")
 }
 }else if(index==1&&this.immagine2.valid){
 if(this.firsSelectedImage1){
-console.log('modify')
+this.officeService.putImage(
+  this.talk.immagini[index].id,
+  this.talk.id,
+  {
+    talk_id:this.talk.id,
+    posizione:this.immagine2.controls['position'].value
+  },
+  this.fileImage1
+).subscribe((image:any)=>{
+  this.toastr.success("Immagine caricata")
+  this.firsSelectedImage1=image.link
+})
 }else{
  this.officeService.saveImage(
     {
@@ -210,7 +232,7 @@ console.log('modify')
   ).subscribe({
     next:(next:any)=>{
 this.toastr.success("La seconda immagine è stata caricata")
-
+this.firsSelectedImage1=next.link
     },error:(err:any)=>{
       this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della seconda immagine.")
     }
@@ -218,7 +240,18 @@ this.toastr.success("La seconda immagine è stata caricata")
 }
 }else if(index==2&&this.immagine3.valid){
 if(this.firsSelectedImage2){
-console.log('modify')
+this.officeService.putImage(
+  this.talk.immagini[index].id,
+  this.talk.id,
+  {
+    talk_id:this.talk.id,
+    posizione:this.immagine3.controls['position'].value
+  },
+  this.fileImage2
+).subscribe((image:any)=>{
+  this.toastr.success("Immagine caricata")
+  this.firsSelectedImage2=image.link
+})
 }else{
  this.officeService.saveImage(
     {
@@ -228,7 +261,7 @@ console.log('modify')
   ).subscribe({
     next:(next:any)=>{
 this.toastr.success("La terza immagine è stata caricata")
-
+this.firsSelectedImage2=next.link
     },error:(err:any)=>{
       this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della terza immagine.")
     }
@@ -236,9 +269,6 @@ this.toastr.success("La terza immagine è stata caricata")
 }
 }else{
   this.toastr.error("Completa prima il form, assicurati di avere inserito la posizione.")
-  this.selectedImage=null
-  this.selectedImage1=null
-  this.selectedImage2=null
 }
 }
 

@@ -62,4 +62,16 @@ saveImage(immagine:{},file:any){
  deleteImage(index:number){
 return this.http.delete(environment.API_URL + this.immagini+'/'+index)
  }
+ putImage(id:number,talk_id:number,immagine:{},file:any){
+  const formData: FormData = new FormData();
+
+
+  const json = JSON.stringify(immagine);
+  const blob = new Blob([json], {
+    type: 'application/json'
+  });
+  formData.append('immagineDTO', blob);
+      formData.append('file', file, file.name);
+  return this.http.put(environment.API_URL + this.immagini+'/'+id+'/'+talk_id,formData);
+ }
 }
