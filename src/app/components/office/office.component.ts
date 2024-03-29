@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { OfficeService } from 'src/app/service/office.service';
+import { VisualizzaTalkComponent } from 'src/app/visualizza-talk/visualizza-talk.component';
 
 @Component({
   selector: 'app-office',
@@ -33,7 +35,7 @@ fileImage2:any
 selectedImage2:any
 submittedTalk:boolean=false
 talks:any
-constructor(private officeService:OfficeService,private toastr:ToastrService){}
+constructor(private officeService:OfficeService,private toastr:ToastrService,private dialog:MatDialog){}
 
 ngAfterViewInit() {
   this.dataSource.paginator = this.paginator;
@@ -210,5 +212,14 @@ this.toastr.show("Talk salvato.")
 }else{
   this.toastr.show("Completa il form prima.")
 }
+}
+
+viewTalk(talk:number){
+const dialogRef = this.dialog.open(VisualizzaTalkComponent,{data:talk})
+dialogRef.afterClosed().subscribe((dialogs:any)=>{
+  if(dialogs=='modified'){
+    this.toastr.show("Talk modificato con successo.")
+  }
+})
 }
 }

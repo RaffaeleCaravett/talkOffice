@@ -6,6 +6,7 @@ import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { OfficeComponent } from './office.component';
+import { MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { OfficeComponent } from './office.component';
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ]
 })
 export class OfficeModule { }

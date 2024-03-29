@@ -161,7 +161,7 @@
 <div class="col-md-12 py-5" *ngIf="talks">
   <h2>Published talks</h2>
   <div class="p-2 row" *ngFor="let t of talks.content">
-  <div class="col-md-12 bg-light border rounded text-start">
+  <div class="col-md-12 bg-light border rounded text-start" (click)="viewTalk(t)">
     <h2>{{t.id + " " +t.titolo + " - " + t.categoria}}</h2>
   </div>
   </div>
