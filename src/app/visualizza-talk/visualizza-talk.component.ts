@@ -26,6 +26,9 @@ fileImage2:any
 selectedImage2:any
 submittedTalk:boolean=false
 categories:any[]=[]
+firsSelectedImage:any
+firsSelectedImage1:any
+firsSelectedImage2:any
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<VisualizzaTalkComponent>,private toastr:ToastrService,
   private officeService:OfficeService) { }
 
@@ -53,16 +56,16 @@ this.talkForm = new FormGroup({
     position:new FormControl(this.talk.immagini&&this.talk.immagini[2]?this.talk.immagini[2].position:'',Validators.required)
   })
 if(this.talk.immagini&&this.talk.immagini[0]){
-  console.log('ihih')
   this.selectedImage=this.talk.immagini[0].link
+  this.firsSelectedImage=this.talk.immagini[0].link
 }
 if(this.talk.immagini&&this.talk.immagini[1]){
-  console.log('ihih')
   this.selectedImage1=this.talk.immagini[1].link
+  this.firsSelectedImage1=this.talk.immagini[1].link
 }
 if(this.talk.immagini&&this.talk.immagini[2]){
-  console.log('ihih')
   this.selectedImage2=this.talk.immagini[2].link
+  this.firsSelectedImage2=this.talk.immagini[2].link
 }
   this.officeService.getAllCategories().subscribe({
     next:(s:any)=>{
@@ -76,7 +79,30 @@ if(this.talk.immagini&&this.talk.immagini[2]){
   }
 
   modificaTalk(){
-
+    this.submittedTalk=true
+    if(this.talkForm.valid){
+      this.officeService.putTalk(
+        this.talk.id,{
+          titolo:this.talkForm.controls['titolo'].value,
+          categoria:this.talkForm.controls['categoria'].value,
+          testo1:this.talkForm.controls['testo1'].value,
+          testo2:this.talkForm.controls['testo2'].value,
+          testo3:this.talkForm.controls['testo3'].value,
+          user_id:this.talk.user.id
+        }
+      ).subscribe({
+        next:(talk:any)=>{
+    this.toastr.show("Talk modificato.")
+  this.talk=talk
+  },
+        error:(err:any)=>{
+          this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio del talk.")
+        },
+        complete:()=>{}
+      })
+    }else{
+      this.toastr.show("Completa il form prima.")
+    }
   }
 
   readURL1(event: any): void {

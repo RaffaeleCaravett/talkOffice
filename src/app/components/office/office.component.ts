@@ -217,6 +217,9 @@ this.toastr.show("Talk salvato.")
 viewTalk(talk:number){
 const dialogRef = this.dialog.open(VisualizzaTalkComponent,{data:talk})
 dialogRef.afterClosed().subscribe((dialogs:any)=>{
+  this.officeService.getTalk().subscribe((talks:any)=>{
+    this.talks=talks
+  })
   if(dialogs=='modified'){
     this.toastr.show("Talk modificato con successo.")
   }
