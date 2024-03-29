@@ -56,4 +56,7 @@ saveImage(immagine:{},file:any){
   return this.http.get(environment.API_URL + this.talk);
   }
  }
+ putTalk(id:number,talk:{}){
+  return this.http.put(environment.API_URL + this.talk+'/'+id,talk);
+ }
 }
