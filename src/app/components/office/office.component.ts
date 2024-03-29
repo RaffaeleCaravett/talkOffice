@@ -215,7 +215,10 @@ this.toastr.show("Talk salvato.")
 }
 
 viewTalk(talk:number){
-const dialogRef = this.dialog.open(VisualizzaTalkComponent,{data:talk})
+const dialogRef = this.dialog.open(VisualizzaTalkComponent,{
+  height:'70%',
+  width:'70%',
+  data:talk},)
 dialogRef.afterClosed().subscribe((dialogs:any)=>{
   this.officeService.getTalk().subscribe((talks:any)=>{
     this.talks=talks

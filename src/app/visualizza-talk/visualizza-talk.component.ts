@@ -114,6 +114,7 @@ if(this.talk.immagini&&this.talk.immagini[2]){
         const reader = new FileReader();
         reader.onload = e => this.selectedImage = reader.result;
         reader.readAsDataURL(this.fileImage);
+        this.modificaImmagine(0)
     }
 
     }
@@ -127,6 +128,7 @@ if(this.talk.immagini&&this.talk.immagini[2]){
         const reader = new FileReader();
         reader.onload = e => this.selectedImage1 = reader.result;
         reader.readAsDataURL(this.fileImage1);
+        this.modificaImmagine(1)
     }
 
     }
@@ -140,9 +142,104 @@ if(this.talk.immagini&&this.talk.immagini[2]){
         const reader = new FileReader();
         reader.onload = e => this.selectedImage2 = reader.result;
         reader.readAsDataURL(this.fileImage2);
+        this.modificaImmagine(2)
     }
 
     }
   }
+
+deleteImage(index:number){
+  if(index==0){
+this.officeService.deleteImage(this.talk.immagini[index].id).subscribe((boolean:any)=>{
+  if(boolean){
+    this.toastr.success("Immagine cancellata.")
+   this. firsSelectedImage=null
+  }else{
+    this.toastr.error("Immagine non cancellata.")
+  }
+})
+  }else if(index==1){
+this.officeService.deleteImage(this.talk.immagini[index].id).subscribe((boolean:any)=>{
+  if(boolean){
+    this.toastr.success("Immagine cancellata.")
+    this.firsSelectedImage1=null
+  }else{
+    this.toastr.error("Immagine non cancellata.")
+  }
+})
+  }else{
+    this.officeService.deleteImage(this.talk.immagini[index].id).subscribe((boolean:any)=>{
+      if(boolean){
+        this.toastr.success("Immagine cancellata.")
+        this.firsSelectedImage2=null
+      }else{
+        this.toastr.error("Immagine non cancellata.")
+      }
+    })
+  }
+}
+
+modificaImmagine(index:number){
+if(index==0&&this.immagine1.valid){
+if(this.firsSelectedImage){
+console.log('modify')
+}else{
+ this.officeService.saveImage(
+    {
+      talk_id:this.talk.id,
+      posizione:this.immagine1.controls['position'].value
+    },this.fileImage
+  ).subscribe({
+    next:(next:any)=>{
+this.toastr.success("La prima immagine è stata caricata")
+
+    },error:(err:any)=>{
+      this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della prima immagine.")
+    }
+  })
+}
+}else if(index==1&&this.immagine2.valid){
+if(this.firsSelectedImage1){
+console.log('modify')
+}else{
+ this.officeService.saveImage(
+    {
+      talk_id:this.talk.id,
+      posizione:this.immagine2.controls['position'].value
+    },this.fileImage1
+  ).subscribe({
+    next:(next:any)=>{
+this.toastr.success("La seconda immagine è stata caricata")
+
+    },error:(err:any)=>{
+      this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della seconda immagine.")
+    }
+  })
+}
+}else if(index==2&&this.immagine3.valid){
+if(this.firsSelectedImage2){
+console.log('modify')
+}else{
+ this.officeService.saveImage(
+    {
+      talk_id:this.talk.id,
+      posizione:this.immagine3.controls['position'].value
+    },this.fileImage2
+  ).subscribe({
+    next:(next:any)=>{
+this.toastr.success("La terza immagine è stata caricata")
+
+    },error:(err:any)=>{
+      this.toastr.show(err.error.message||"Qualcosa è andato storto nel salvataggio della terza immagine.")
+    }
+  })
+}
+}else{
+  this.toastr.error("Completa prima il form, assicurati di avere inserito la posizione.")
+  this.selectedImage=null
+  this.selectedImage1=null
+  this.selectedImage2=null
+}
+}
 
 }

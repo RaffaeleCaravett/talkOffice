@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container text-center ">
   <div class="row">
     <div class="col-md-12 py-5">
       <h2>Inserisci un talk</h2>
@@ -44,8 +44,8 @@
           <option value=""></option>
           <option value="{{p}}" *ngFor="let p of positions">{{p}}</option>
         </select>
-      <button class="btn fs-5" (click)="img1.click()">➕</button>
-      <button class="btn fs-5 my-1" *ngIf="selectedImage" (click)="selectedImage=null;fileImage=null;immagine1.controls['immagine'].setValue(null)">❌</button>
+      <button class="btn fs-5" (click)="img1.click()">🖊️ Modifica immagine</button>
+      <button class="btn fs-5 my-1" *ngIf="selectedImage" (click)="deleteImage(0);selectedImage=null;fileImage=null;immagine1.controls['immagine'].setValue(null)">❌</button>
       </form>
     </div>
     <div class="col-md-4">
@@ -61,8 +61,8 @@
           <option value=""></option>
           <option value="{{p}}" *ngFor="let p of positions">{{p}}</option>
         </select>
-      <button class="btn fs-5" (click)="img2.click()">➕</button>
-      <button class="btn fs-5 my-1" *ngIf="selectedImage1" (click)="selectedImage1=null;fileImage1=null;immagine2.controls['immagine'].setValue(null)">❌</button>
+      <button class="btn fs-5" (click)="img2.click()">🖊️ Modifica immagine</button>
+      <button class="btn fs-5 my-1" *ngIf="selectedImage1" (click)="deleteImage(1);selectedImage1=null;fileImage1=null;immagine2.controls['immagine'].setValue(null)">❌</button>
       </form>
     </div>
     <div class="col-md-4">
@@ -78,8 +78,8 @@
           <option value=""></option>
           <option value="{{p}}" *ngFor="let p of positions">{{p}}</option>
         </select>
-      <button class="btn fs-5" (click)="img3.click()">➕</button>
-      <button class="btn fs-5 my-1" *ngIf="selectedImage2" (click)="selectedImage2=null;fileImage2=null;immagine3.controls['immagine'].setValue(null)">❌</button>
+      <button class="btn fs-5" (click)="img3.click()">🖊️ Modifica immagine</button>
+      <button class="btn fs-5 my-1" *ngIf="selectedImage2" (click)="deleteImage(2);selectedImage2=null;fileImage2=null;immagine3.controls['immagine'].setValue(null)">❌</button>
       </form>
     </div>
     <div class="col-md-12 py-3">

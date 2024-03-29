@@ -59,4 +59,7 @@ saveImage(immagine:{},file:any){
  putTalk(id:number,talk:{}){
   return this.http.put(environment.API_URL + this.talk+'/'+id,talk);
  }
+ deleteImage(index:number){
+return this.http.delete(environment.API_URL + this.immagini+'/'+index)
+ }
 }
